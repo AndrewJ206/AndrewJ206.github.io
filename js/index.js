@@ -23,12 +23,13 @@ async function sendData(formData){
           throw new Error('Network response was not ok');
         }
         console.log('Data sent successfully');
+        window.location.href = "/"
       } catch (error) {
         console.error('There was a problem sending the data:', error.message);
     }
 }
 
-submit.addEventListener("click", ()=>{
+submit.addEventListener("click", (e)=>{    
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const rsvpY = document.getElementById("fyes").checked;
@@ -48,5 +49,7 @@ submit.addEventListener("click", ()=>{
     formData.append('rsvp', rsvpN ? 'No' : 'Yes');
     formData.append('gcount', gstCnt);
 
+
+    e.preventDefault()
     sendData(formData)
 })
